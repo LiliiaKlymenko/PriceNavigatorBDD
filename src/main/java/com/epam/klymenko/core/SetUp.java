@@ -19,20 +19,11 @@ import java.util.concurrent.TimeUnit;
 
 public class SetUp extends Steps {
 
-
-    protected WebDriver driver;
-
-    @BeforeScenario
-    public void Init()
-    {
-        driver = new Driver().getDriver();
-        Driver.getDriver().manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-    }
-
+    /*
     @AfterScenario
     public void TearDown()
     {
-        driver.close();
+        Driver.getDriver().close();
     }
-
+*/
 }

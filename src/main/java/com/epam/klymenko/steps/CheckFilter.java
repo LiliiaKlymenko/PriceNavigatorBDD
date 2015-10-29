@@ -21,7 +21,7 @@ public class CheckFilter extends SetUp {
     HomePage homepage;
     CategoryPage categoryPage;
 
-    private int expected = 1;
+    private int expected = 6;
     private String name;
 
     @Given("I am on pn.com.ua")
@@ -49,20 +49,20 @@ public class CheckFilter extends SetUp {
 
     @When("Take the name of the cheapest good")
     public String selectCheapestGood(){
-        return subcategoryPage.selectFirstItem().ItemName.getText();
+        name = subcategoryPage.selectFirstItem().getItemName();
+        return name;
     }
 
     @When("Enter the name into search box")
     public void enterNameIntoSearch() {
-        name = selectCheapestGood();
         subcategoryPage.search.sendKeys(name);
         subcategoryPage.searchSubmit.click();
     }
 
-    @Then("The search result is equal to 1")
+    @Then("The search result is equal to 6")
     public void searchResultEqualToExpected(){
-        String actualResult = subcategoryPage.amountOfSearchResults.getText();
-        Assert.assertEquals("The search result is equal to 1", Integer.parseInt(actualResult), expected);
+        String actualResult = subcategoryPage.getAmountOfSearchResultsInCategory();
+        Assert.assertEquals("The search result is equal to 6", Integer.parseInt(actualResult), expected);
     }
 
     @Then("The name of the product is equal to the specified name")

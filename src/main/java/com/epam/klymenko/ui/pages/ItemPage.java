@@ -17,7 +17,13 @@ public class ItemPage {
     }
 
     @FindBy(xpath = "//h1")
-    public WebElement ItemName;
+    public WebElement itemName;
+
+    public String getItemName()
+    {
+        String name = itemName.getText().substring(0, 25);
+        return name;
+    }
 
 
 }

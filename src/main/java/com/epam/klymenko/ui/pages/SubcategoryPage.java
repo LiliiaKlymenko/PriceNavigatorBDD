@@ -17,14 +17,14 @@ public class SubcategoryPage {
     public static final int MIN_PRICE = 3000;
     public static final String MANUFACTURER = "ASUS";
 
-    private final String minxPath = "//a[contains(text(),'(" + MIN_PRICE + ")')][2]";
-    private final String maxxPath = "//a[contains(text(),'(" + MAX_PRICE + ")')][1]";
+    private final String minxPath = "//a[contains(text(),'" + MIN_PRICE + "')][1]";
+    private final String maxxPath = "//a[contains(text(),'" + MAX_PRICE + "')][2]";
     private final String manufactxPath = "//a[contains(text(),'" + MANUFACTURER + "')]";
 
-    @FindBy(xpath = "//strong")
+    @FindBy(xpath = "//div[3]/div[3]/div/a")
     public WebElement firstItem;
 
-    @FindBy(xpath = "//div[3]/div[3]/div/a")
+    @FindBy(xpath = "//div[22]/div/a")
     public WebElement lastItem;
 
     @FindBy(xpath = "//div[@class='price']/strong")
@@ -51,6 +51,9 @@ public class SubcategoryPage {
     @FindBy(xpath = "//b")
     public WebElement amountOfSearchResults;
 
+    @FindBy(xpath = "//div[2]/span")
+    public WebElement amountOfSearchResultsInCategory;
+
     @FindBy(xpath = manufactxPath + "/following-sibling::i[1]")
     public WebElement amountOfManufacturers;
 
@@ -65,6 +68,16 @@ public class SubcategoryPage {
         return new ItemPage();
     }
 
+    public String getAmountOfSearchResults()
+    {
+        return amountOfSearchResults.getText();
+    }
+
+
+    public String getAmountOfSearchResultsInCategory()
+    {
+        return amountOfSearchResultsInCategory.getText().substring(1,2);
+    }
 
 
 }
